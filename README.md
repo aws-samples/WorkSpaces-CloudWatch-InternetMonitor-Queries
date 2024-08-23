@@ -10,7 +10,7 @@ Get-Help Get-ConnectedWSLocations -Full
 
 #### Get Connected WorkSpace Locations Cmdlet
 ```powershell
-Get-ConnectedWSLocations
+Get-ConnectedWSLocations -Full
 ```
 
 #### Get CloudWatch Internet Monitor Health Events Cmdlet
