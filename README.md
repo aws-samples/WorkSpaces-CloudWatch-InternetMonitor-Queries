@@ -1,5 +1,5 @@
 ## WorkSpaces queries for CloudWatch Internet Monitor 
-This repository hosts a PowerShell module to help administrators query the CloudWatch Internet Monitor Logs and get insights into the WorkSpaces connected to a specific ISP, ASN, City, State or Country. WorkSpace administrators can start by calling Get-Connected-WSLocations to see details on where users are connecting to WorkSpaces. In addition, the Get-ImpactedWorkSpaces will show details on specific users specified in the parameters. The Get-CWLogResults will allow further custom queries to dive into the logs.
+This repository hosts a PowerShell module to help administrators query the CloudWatch Internet Monitor Logs and get insights into the WorkSpaces connected to a specific ISP, ASN, City, State or Country. WorkSpace administrators can with calling Get-Connected-WSLocations to see details on where users are connecting to WorkSpaces. In addition, the Get-ImpactedWorkSpaces will show details on specific users specified in the parameters. The Get-CWLogResults will allow further custom queries to dive into the logs.
 
 ### Usage 
 To review cmdlet usage, you can run `Get-Help` against the cmdlets after importing the module. For example:
@@ -59,7 +59,9 @@ For this walkthrough, you use [AWS CloudShell](https://aws.amazon.com/cloudshell
 6. Download the module by invoking `git clone https://github.com/aws-samples/WorkSpaces-CloudWatch-InternetMonitor-Queries`.
 4. Navigate to the directory by invoking `cd ./WorkSpaces-CloudWatch-InternetMonitor-Queries/`
 5. Import the module by invoking `Import-Module ./WorkSpaces-CloudWatch-InternetMonitor-Queries.psm1 -force`.
-7. Invoke `Get-ImpactedWorkSpaces See the **Usage** section for additional usage information. 
+7. Invoke `Get-CWIMHealthAlerts See the **Usage** section for additional usage information.
+8. Invoke `Get-ConnectedWSLocations See the **Usage** section for additional usage information.  
+9. Invoke `Get-ImpactedWorkSpaces See the **Usage** section for additional usage information. 
 
 ## Security
 
