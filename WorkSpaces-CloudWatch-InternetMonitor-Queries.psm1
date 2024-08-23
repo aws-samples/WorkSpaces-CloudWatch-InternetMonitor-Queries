@@ -99,7 +99,7 @@ function Get-ConnectedWSLocations(){
         This cmdlet is run to get the location details from the CloudWatch Internet Monitor where WorkSpaces are currently connected.
     .DESCRIPTION
         This cmdlet is run to get the location details from the CloudWatch Internet Monitor where WorkSpaces are currently connected.
-    .PARAMETERLogGroup
+    .PARAMETER LogGroup
         This required parameter is a string value for LogGroup that will be used as part of the query. For example: "/aws/internet-monitor/WorkSpaces/byCity"
     .PARAMETER region
         This required parameter is a string value for the region you are building the WorkSpaces report for. For example, 'us-east-1'.
