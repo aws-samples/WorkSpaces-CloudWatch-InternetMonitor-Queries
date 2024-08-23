@@ -3,14 +3,14 @@ This repository hosts a PowerShell module to help administrators query the Cloud
 
 ### Usage 
 To review cmdlet usage, you can run `Get-Help` against the cmdlets after importing the module. For example:
-#### Get Connected WorkSpaces Cmdlet
+#### Get Connected WorkSpace Locations Cmdlet
 ```powershell
 Get-Help Get-ConnectedWSLocations -Full
 ```
 
-#### Get Connected WorkSpace Locations Cmdlet
+#### Get Impacted WorkSpace Locations Cmdlet
 ```powershell
-Get-ConnectedWSLocations -Full
+Get-ImpactedWorkSpaces -Full
 ```
 
 #### Get CloudWatch Internet Monitor Health Events Cmdlet
