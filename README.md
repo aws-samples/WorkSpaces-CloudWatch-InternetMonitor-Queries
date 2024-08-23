@@ -59,9 +59,9 @@ For this walkthrough, you use [AWS CloudShell](https://aws.amazon.com/cloudshell
 6. Download the module by invoking `git clone https://github.com/aws-samples/WorkSpaces-CloudWatch-InternetMonitor-Queries`.
 4. Navigate to the directory by invoking `cd ./WorkSpaces-CloudWatch-InternetMonitor-Queries/`
 5. Import the module by invoking `Import-Module ./WorkSpaces-CloudWatch-InternetMonitor-Queries.psm1 -force`.
-7. Invoke `Get-CWIMHealthAlerts See the **Usage** section for additional usage information.
-8. Invoke `Get-ConnectedWSLocations See the **Usage** section for additional usage information.  
-9. Invoke `Get-ImpactedWorkSpaces See the **Usage** section for additional usage information. 
+7. Invoke `Get-CWIMHealthAlerts` See the **Usage** section for additional usage information.
+8. Invoke `Get-ConnectedWSLocations` See the **Usage** section for additional usage information.  
+9. Invoke `Get-ImpactedWorkSpaces` See the **Usage** section for additional usage information. 
 
 ## Security
 
