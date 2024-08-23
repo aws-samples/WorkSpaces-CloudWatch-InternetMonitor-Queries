@@ -13,11 +13,11 @@ Get-Help Get-ConnectedWSLocations -Full
 Get-ConnectedWSLocations
 ```
 
-#### Get CloudWatch Internet Monitor Health Events
+#### Get CloudWatch Internet Monitor Health Events Cmdlet
 ```powershell
 Get-Help Get-CWIMHealthEvents -Full
 ```
-#### Get CloudWatch Log Events
+#### Get CloudWatch Log Events Cmdlet
 ```powershell
 Get-Help Get-CWLogResults -Full
 ```
