@@ -213,7 +213,7 @@ function Get-ImpactedWorkSpaces(){
     $filteredCWIMResults = $CWIMResults
     
     if($IP -ne ""){
-        $filteredCWIMResults = $filteredCWIMResults | Where-Object { ($_.IPPrefix -like ($IP + "*")) } | Select-Object City,Subdivision,Country,NetworkName,ASN,IPPrefix
+        $filteredCWIMResults = $filteredCWIMResults | Where-Object { ($_.IPPrefix -like ($IP + ".*")) } | Select-Object City,Subdivision,Country,NetworkName,ASN,IPPrefix
     }
     if($ASN -ne ""){
         $filteredCWIMResults = $filteredCWIMResults| Where-Object { ($_.ASN -like ($ASN + "*")) } | Select-Object City,Subdivision,Country,NetworkName,ASN,IPPrefix
@@ -255,7 +255,7 @@ function Get-ImpactedWorkSpaces(){
     foreach ($record in $filteredCWIMResults){
         $ipFilter = $record.IPPrefix.Split('.')
         $newString =$ipFilter[0]+"."+$ipFilter[1]+"."+$ipFilter[2]
-        $filteredItems = $WorkSpaceAccessandInfo | Where-Object { ($_.IPAddress -like ($newString + "*")) } | Select-Object IPAddress,ClientPlatform,ClientVersion,directoryId,loginTime,WorkSpaceId,UserName, Protocol, Email
+        $filteredItems = $WorkSpaceAccessandInfo | Where-Object { ($_.IPAddress -like ($newString + ".*")) } | Select-Object IPAddress,ClientPlatform,ClientVersion,directoryId,loginTime,WorkSpaceId,UserName, Protocol, Email
         $filteredItems | Add-Member -NotePropertyName "IP_Prefix" -NotePropertyValue $record.IPPrefix
         $filteredItems | Add-Member -NotePropertyName "City" -NotePropertyValue $record.City
         $filteredItems | Add-Member -NotePropertyName "Country" -NotePropertyValue $record.Country
