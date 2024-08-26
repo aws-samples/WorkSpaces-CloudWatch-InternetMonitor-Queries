@@ -1,4 +1,4 @@
-﻿<#
+<#
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -65,13 +65,13 @@ function Get-CWLogResults(){
     $queryComplete=$false
     $timer=0
     while (!$queryComplete -and ($timer -lt $queryTimeout)) {
-        sleep -Seconds 1
-        $timer=$timer+1
-        write-host "Query is still running, checking query again in 1 second "
         $queryStatus = Get-CWLQueryResult -QueryId $queryId -Region $region 
         if ($queryStatus.Status -eq "Complete"){
             $queryComplete=$true
         }
+        write-host "Query is still running, checking query again in 1 second"
+        sleep -Seconds 1
+        $timer=$timer+1
     } 
     if ($queryComplete){
         foreach ($row in $queryStatus.Results) {
@@ -120,7 +120,7 @@ function Get-ConnectedWSLocations(){
         [Parameter(Mandatory=$true)]
         [string]$region,
         [Parameter(Mandatory=$true)]
-        [bool]$CSVOutput,
+        [bool]$CSVOutput=$true,
         [Parameter(Mandatory=$false)]
         [int]$TimeinHours = 24,
         [Parameter(Mandatory=$false)]
@@ -180,7 +180,7 @@ function Get-ImpactedWorkSpaces(){
         [Parameter(Mandatory=$true)]
         [string]$region,
         [Parameter(Mandatory=$true)]
-        [bool]$CSVOutput,
+        [bool]$CSVOutput=$true,
         [Parameter(Mandatory=$false)]
         [string]$IP,
         [Parameter(Mandatory=$false)]
@@ -223,6 +223,9 @@ function Get-ImpactedWorkSpaces(){
     }
     if($Subdivision -ne ""){
         $filteredCWIMResults = $filteredCWIMResults | Where-Object { ($_.Subdivision -like ($Subdivision + "*")) } | Select-Object City,Subdivision,Country,NetworkName,ASN,IPPrefix
+    }
+    if($Country -ne ""){
+        $filteredCWIMResults = $filteredCWIMResults | Where-Object { ($_.Country -like ($Country + "*")) } | Select-Object City,Subdivision,Country,NetworkName,ASN,IPPrefix
     }
 
     #Next pull a list of WorkSpaces
@@ -293,7 +296,7 @@ function Get-CWIMHealthAlerts(){
         [Parameter(Mandatory=$true)]
         [string]$region,
         [Parameter(Mandatory=$true)]
-        [bool]$CSVOutput
+        [bool]$CSVOutput=$true
     )
     $events = get-CWIMHealthEventList -MonitorName WorkSpaces -Region $region
     $logResult = @()
@@ -320,5 +323,6 @@ function Get-CWIMHealthAlerts(){
     }else{
         return $logResult
     }
-}
+} 
+
 
