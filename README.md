@@ -1,5 +1,5 @@
-## WorkSpaces queries for CloudWatch Internet Monitor 
-This repository hosts a PowerShell module to help administrators query the CloudWatch Internet Monitor Logs and get insights into the WorkSpaces connected to a specific ISP, ASN, City, State or Country. Administrators can gather information on active health events  WorkSpace administrators can with calling `Get-ConnectedWSLocations` to see details on where users are connecting to WorkSpaces. In addition, the `Get-ImpactedWorkSpaces` will show details on specific users specified in the parameters. The `Get-CWLogResults` will allow further custom queries to dive into the logs.
+## WorkSpaces queries for CloudWatch Internet Monitor and CloudWatch log groups. 
+This repository hosts a PowerShell module to help administrators query the CloudWatch Internet Monitor Logs and get insights into the WorkSpaces connected to a specific ISP, ASN, City, State or Country. Administrators can gather information on active health events  WorkSpace administrators can with calling `Get-ConnectedWSLocations` to see details on where users are connecting to WorkSpaces. In addition, the `Get-ImpactedWorkSpaces` will show details on specific users specified in the parameters. For information on WorkSpaces Clients that are in [Technical Guidance or End of Life](https://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-eol.html), `Get-WSEOLClients` will return details on the WorkSpaces, and optionally on the user connecting to the WorkSpace. Finally, the `Get-CWLogResults` will allow further custom queries to dive into the logs. 
 
 ### Usage 
 To review cmdlet usage, you can run `Get-Help` against the cmdlets after importing the module. For example:
@@ -17,6 +17,11 @@ Get-Help Get-ImpactedWorkSpaces -Full
 ```powershell
 Get-Help Get-CWIMHealthEvents -Full
 ```
+#### Get WorkSpaces end of life and technical guidance clients Cmdlet (updated 1/22/2025)
+```powershell
+Get-Help Get-WksEolClients -Full
+```
+
 #### Get CloudWatch Log Events Cmdlet
 ```powershell
 Get-Help Get-CWLogResults -Full
@@ -27,25 +32,10 @@ Get-Help Get-CWLogResults -Full
 You must have IAM permissions to call the service APIs. It is a best practice to follow the principle of least privilege. The following policy provides access to APIs needed by the PowerShell Module
 <a name="Required-permissions"></a>
 # Required permissions
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "WorkSpacesCloudWatchMetrics",
-      "Action": [
-        "logs:DescribeQueries",
-	"logs:DescribeLogGroups",
-        "logs:GetQueryResults",
-        "logs:StartQuery"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
-  ]
-}
-```
+ - Get-WKSWorkspace
+ - Get-WKSWorkspaceDirectories
+ - Start-CWLQuery
+ - Get-CWLQueryResult
 
 ### Walkthrough 
 For this walkthrough, you use [AWS CloudShell](https://aws.amazon.com/cloudshell/). CloudShell has [PowerShell.Core](https://github.com/PowerShell/PowerShell#user-content-windows-powershell-vs-powershell-core) and [AWS Tools for PowerShell](https://aws.amazon.com/powershell/) already installed. Note that CloudShell runs outside of your environment so it will not be able to get user details from Active Directory. To get these details in your inventory, invoke the `Get-WorkSpacesInventory` cmdlet from a machine that can reach Active Directory with credentials to call `Get-ADUser`. The assumed role within CloudShell will need Identity Access Management permissions to call:
@@ -61,7 +51,8 @@ For this walkthrough, you use [AWS CloudShell](https://aws.amazon.com/cloudshell
 5. Import the module by invoking `Import-Module ./WorkSpaces-CloudWatch-InternetMonitor-Queries.psm1 -force`.
 7. Invoke `Get-CWIMHealthAlerts` See the **Usage** section for additional usage information.
 8. Invoke `Get-ConnectedWSLocations` See the **Usage** section for additional usage information.  
-9. Invoke `Get-ImpactedWorkSpaces` See the **Usage** section for additional usage information. 
+9. Invoke `Get-ImpactedWorkSpaces` See the **Usage** section for additional usage information.
+10. Invoke `Get-WksEolClients` See the **Usage** section for additional usage information.
 
 ## Security
 
@@ -70,5 +61,3 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
-
-
